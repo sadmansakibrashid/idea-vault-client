@@ -1,4 +1,8 @@
- import Image from "next/image";
+ import { DeleteAlert } from "@/components/DeleteAlert";
+import { EditModal } from "@/components/EditModal";
+import { Button } from "@heroui/react";
+import Image from "next/image";
+import { BiEdit } from "react-icons/bi";
  const IdeasDetailPage = async ({ params }) => {
  const { id } =await params;
  const res = await fetch(`http://localhost:5000/ideas/${id}`)
@@ -7,6 +11,11 @@
 
   return (
     <div className="max-w-5xl mx-auto p-6">
+        <div className="flex items-center gap-3 justify-end mt-5 mb-3">
+          <EditModal idea={idea}></EditModal>
+          <DeleteAlert idea={idea}></DeleteAlert>
+        </div>
+      
       <div className="bg-white rounded-xl shadow-lg overflow-hidden">
         <Image
           src={idea.imageURL}
