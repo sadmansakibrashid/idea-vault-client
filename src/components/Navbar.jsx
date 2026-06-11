@@ -18,7 +18,7 @@ const Navbar = () => {
         </li>
 
         <li>
-          <Link href={"/My-Ideas"}>My Ideas</Link>
+          <Link href={"/my-ideas"}>My Ideas</Link>
         </li>
         <li>
           <Link href={"/My-Interactions"}>My Interactions</Link>
@@ -35,7 +35,7 @@ const Navbar = () => {
               <Link href={"/login"}>Login</Link>
             </li>
             <li>
-              <Link href={"/Register"}>Sign Up</Link>
+              <Link href={"/signup"}>Sign Up</Link>
             </li>
         
       </ul>

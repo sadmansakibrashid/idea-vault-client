@@ -9,6 +9,12 @@ import { BiEdit } from "react-icons/bi";
  const idea = await res.json();
  console.log(idea)
 
+  const commentRes = await fetch(
+    `http://localhost:5000/comments/${id}`,
+    { cache: "no-store" }
+  );
+  const comments = await commentRes.json();
+
   return (
     <div className="max-w-5xl mx-auto p-6">
         <div className="flex items-center gap-3 justify-end mt-5 mb-3">
@@ -96,3 +102,131 @@ import { BiEdit } from "react-icons/bi";
 };
 
 export default IdeasDetailPage;
+
+// import React from "react";
+
+// const IdeasDetailPage = async ({ params }) => {
+//   const { id } = params;
+
+ 
+//   const res = await fetch(`http://localhost:5000/ideas/${id}`, {
+//     cache: "no-store",
+//   });
+
+//   const idea = await res.json();
+
+//   // FETCH COMMENTS (server style)
+//   const commentRes = await fetch(
+//     `http://localhost:5000/comments/${id}`,
+//     { cache: "no-store" }
+//   );
+
+//   const comments = await commentRes.json();
+
+//   // ADD COMMENT
+//   const handleComment = async (formData) => {
+//     "use server";
+
+//     const comment = Object.fromEntries(formData.entries());
+
+//     await fetch("http://localhost:5000/comments", {
+//       method: "POST",
+//       headers: {
+//         "content-type": "application/json",
+//       },
+//       body: JSON.stringify({
+//         ideaId: id,
+//         userName: comment.userName,
+//         commentText: comment.commentText,
+//       }),
+//     });
+//   };
+
+//   return (
+//     <div className="max-w-5xl mx-auto p-6">
+
+//       {/* IDEA */}
+//       <div className="border p-4 rounded">
+//         <h1 className="text-3xl font-bold">
+//           {idea.ideaTitle}
+//         </h1>
+
+//         <p className="text-gray-600 mt-2">
+//           {idea.shortDescription}
+//         </p>
+
+//         <p className="mt-4">
+//           {idea.detailedDescription}
+//         </p>
+//       </div>
+
+//       {/* ADD COMMENT */}
+//       <div className="mt-8">
+//         <h2 className="text-2xl font-bold mb-3">
+//           Add Comment
+//         </h2>
+
+//         <form action={handleComment} className="space-y-3">
+//           <input
+//             name="userName"
+//             placeholder="Your Name"
+//             className="w-full border p-2"
+//             required
+//           />
+
+//           <textarea
+//             name="commentText"
+//             placeholder="Write comment"
+//             className="w-full border p-2"
+//             required
+//           />
+
+//           <button className="bg-blue-500 text-white px-4 py-2">
+//             Submit
+//           </button>
+//         </form>
+//       </div>
+
+//       {/* COMMENTS */}
+//       <div className="mt-8">
+//         <h2 className="text-2xl font-bold mb-3">
+//           Comments
+//         </h2>
+
+//         {comments.map((c) => (
+//           <div key={c._id} className="border p-3 mb-3">
+//             <h4 className="font-bold">{c.userName}</h4>
+
+//             <p>{c.commentText}</p>
+
+//             <small className="text-gray-500">
+//               {c.createdAt
+//                 ? new Date(c.createdAt).toLocaleString()
+//                 : ""}
+//             </small>
+
+//             {/* SIMPLE DELETE BUTTON */}
+//             <form
+//               action={async () => {
+//                 "use server";
+
+//                 await fetch(
+//                   `http://localhost:5000/comments/${c._id}`,
+//                   {
+//                     method: "DELETE",
+//                   }
+//                 );
+//               }}
+//             >
+//               <button className="text-red-500 mt-2">
+//                 Delete
+//               </button>
+//             </form>
+//           </div>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default IdeasDetailPage;
