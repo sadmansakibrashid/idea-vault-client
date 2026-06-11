@@ -2,8 +2,21 @@
 
 import { TrashBin } from "@gravity-ui/icons";
 import {AlertDialog, Button} from "@heroui/react";
+import { redirect } from "next/navigation";
 
 export function DeleteAlert({idea}) {
+    const {_id}= idea;
+    const handleDelete = async()=>{
+    const res =await fetch(`http://localhost:5000/ideas/${_id}`,{
+       method:"DELETE",
+       headers:{
+        "content-type":"application/json",
+       },
+    });
+    const data = await res.json();
+    redirect("/ideas")
+    console.log(data);
+    }
   return (
     <AlertDialog>
       <Button className={'text-red-500'} variant="outline"><TrashBin/> Delete</Button>
@@ -25,8 +38,8 @@ export function DeleteAlert({idea}) {
               <Button slot="close" variant="tertiary">
                 Cancel
               </Button>
-              <Button slot="close" variant="danger">
-                Delete Project
+              <Button onClick={handleDelete} slot="close" variant="danger">
+                Delete 
               </Button>
             </AlertDialog.Footer>
           </AlertDialog.Dialog>
