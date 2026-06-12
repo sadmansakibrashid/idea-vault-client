@@ -8,7 +8,8 @@ import { BiEdit } from "react-icons/bi";
  const { id } =await params;
  const res = await fetch(`http://localhost:5000/ideas/${id}`)
  const idea = await res.json();
- console.log(idea)
+ console.log(idea);
+ 
 
   return (
     <div className="max-w-5xl mx-auto p-6">
@@ -88,7 +89,7 @@ import { BiEdit } from "react-icons/bi";
                   {idea.tags}
                 </span>
               </div>
-              <CommentCard idea={idea}></CommentCard>
+              <CommentCard idea={idea._id}></CommentCard>
             </section>
           </div>
         </div>

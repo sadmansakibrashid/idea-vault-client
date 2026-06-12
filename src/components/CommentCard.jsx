@@ -3,54 +3,50 @@
 import { Button, Card, DateField, Input, Label, TextArea } from "@heroui/react";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-
+import { authClient } from "@/lib/auth-client";
 
 const CommentCard = ({ ideaId }) => {
-  const [userName, setUserName] = useState("");
-  const [commentText, setCommentText] = useState("");
+const [commentText, setCommentText] = useState("");
+ const { data: session } = authClient.useSession();
+  const user = session?.user;
   
-
-  const handleComment = async () => {
+const handleComment = async () => {
     const commentData = {
       ideaId,
-      userName,
+      userName: session?.user?.name,
       commentText,
       createdAt: new Date(),
     };
+    
+    try {
+      const res = await fetch("http://localhost:5000/comments", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(commentData),
+      });
 
-    const res = await fetch("http://localhost:5000/comments", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(commentData),
-    });
+      const data = await res.json();
 
-    const data = await res.json();
-
-    if (data.insertedId) {
-      toast.success("Comment added successfully!");
-
-      setUserName("");
-      setCommentText("");
+      if (data.insertedId) {
+        toast.success("Comment added successfully!");
+        setCommentText("");
+      } else {
+        toast.error("Failed to add comment");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Something went wrong");
     }
   };
-
   return (
     <Card className="border rounded-lg p-5 mt-8">
        
       <h2 className="text-2xl font-bold mb-4">Add Comment</h2>
 
   <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-end">
-  {/* Name */}
-  <div className="md:col-span-3">
-    <Input
-      label="Name"
-      value={userName}
-      onChange={(e) => setUserName(e.target.value)}
-      placeholder="Your Name"
-    />
-  </div>
+
 
   {/* Comment */}
   <div className="md:col-span-7">

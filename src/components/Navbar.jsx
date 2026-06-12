@@ -29,7 +29,7 @@ const Navbar = () => {
           <Link href={"/my-ideas"}>My Ideas</Link>
         </li>
         <li>
-          <Link href={"/My-Interactions"}>My Interactions</Link>
+          <Link href={"/my-interactions"}>My Interactions</Link>
         </li>
       </ul>
     <ul className="flex items-center gap-3">
