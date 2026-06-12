@@ -21,12 +21,12 @@ const LoginPage = () => {
     const formData = new FormData(e.currentTarget);
     const user = Object.fromEntries(formData.entries());
 
-    const { data, error } = await authClient.signUp.email({
+    const { data, error } = await authClient.signIn.email({
       email: user.email,
       password: user.password,
-      name: user.name,
-      image: user.image,
+     
     });
+    console.log({data, error})
 
     if (data) {
       redirect("/");
@@ -44,23 +44,11 @@ const LoginPage = () => {
     <div className="max-w-7xl mx-auto">
       <div className="text-center my-3">
         <h1 className="text-2xl font-bold">Login</h1>
-        <p>Start your adventure with Wanderlust</p>
+        <p>Share your startup ideas</p>
       </div>
       <Card className="border rounded-none">
         <Form onSubmit={onSubmit} className="flex w-96 flex-col gap-4">
-          <TextField isRequired name="name" type="text">
-            <Label>Name</Label>
-            <Input placeholder="Enter your name" />
-            <FieldError />
-          </TextField>
-
-          <TextField name="image" type="url">
-            <Label>Image URL</Label>
-            <Input placeholder="Image url" />
-            <FieldError />
-          </TextField>
-
-          <TextField
+           <TextField
             isRequired
             name="email"
             type="email"

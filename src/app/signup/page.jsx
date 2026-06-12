@@ -44,7 +44,7 @@ const SignUpPage = () => {
     <div className="max-w-7xl mx-auto">
       <div className="text-center my-3">
         <h1 className="text-2xl font-bold">Create Account</h1>
-        <p>Start your adventure with Wanderlust</p>
+        <p>Share your startup ideas</p>
       </div>
       <Card className="border rounded-none">
         <Form onSubmit={onSubmit} className="flex w-96 flex-col gap-4">
