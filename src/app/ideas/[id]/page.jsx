@@ -1,4 +1,5 @@
  import CommentCard from "@/components/CommentCard";
+import { CommentDelete } from "@/components/CommentDelete";
 import { DeleteAlert } from "@/components/DeleteAlert";
 import { EditModal } from "@/components/EditModal";
 import { Button } from "@heroui/react";
@@ -90,6 +91,7 @@ import { BiEdit } from "react-icons/bi";
                 </span>
               </div>
               <CommentCard idea={idea._id}></CommentCard>
+              <CommentDelete idea={idea._id}></CommentDelete>
             </section>
           </div>
         </div>

@@ -1,3 +1,4 @@
+import { CommentDelete } from "@/components/CommentDelete";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 const MyInteractionPage =async () => {
@@ -10,7 +11,7 @@ const MyInteractionPage =async () => {
     const res = await fetch(`http://localhost:5000/comments/${user?.id}`);
     
     const data = await res.json()
-    console.log(data[0])
+    
     return (
         <div>
             <h1>My Interaction</h1>
@@ -21,6 +22,8 @@ const MyInteractionPage =async () => {
                 <h1>{d.userName}</h1>
                 <p>{d.commentText}</p>
                <p>{d.createdAt}</p>
+               
+               <CommentDelete CommentId={d._id}></CommentDelete>
             </div>
           ))
                 }
