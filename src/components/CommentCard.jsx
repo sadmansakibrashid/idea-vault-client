@@ -2,18 +2,20 @@
 
 import { Button, Card, DateField, Input, Label, TextArea } from "@heroui/react";
 import React, { useState } from "react";
-import { toast } from "react-toastify";
+
 import { authClient } from "@/lib/auth-client";
+import toast from "react-hot-toast";
 
 const CommentCard = ({ ideaId }) => {
 const [commentText, setCommentText] = useState("");
  const { data: session } = authClient.useSession();
   const user = session?.user;
   
+  
 const handleComment = async () => {
     const commentData = {
-      ideaId,
-      userName: session?.user?.name,
+      userId:user?.id,
+      userName:user?.name,
       commentText,
       createdAt: new Date(),
     };
