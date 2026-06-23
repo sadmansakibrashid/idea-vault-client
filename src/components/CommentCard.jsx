@@ -5,6 +5,7 @@ import React, { useState } from "react";
 
 import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
+import { CommentDelete } from "./CommentDelete";
 
 const CommentCard = ({ ideaId }) => {
 const [commentText, setCommentText] = useState("");
@@ -69,6 +70,8 @@ const handleComment = async () => {
       Submit
     </Button>
   </div>
+  
+   {/* <CommentDelete idea={idea._id}></CommentDelete> */}
 </div>
     </Card>
   );

@@ -90,7 +90,7 @@ const LoginPage = () => {
           </TextField>
           <div className="flex justify-center gap-2">
             <Button className={"rounded-none w-full bg-cyan-500"} type="submit">
-              Create Account
+              Login
             </Button>
           </div>
         </Form>

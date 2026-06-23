@@ -1,13 +1,19 @@
- import CommentCard from "@/components/CommentCard";
+ import MyInteractionPage from "@/app/my-interactions/page";
+import CommentCard from "@/components/CommentCard";
 import { CommentDelete } from "@/components/CommentDelete";
 import { DeleteAlert } from "@/components/DeleteAlert";
+import EditComment from "@/components/EditComment";
 import { EditModal } from "@/components/EditModal";
 import { Button } from "@heroui/react";
 import Image from "next/image";
 import { BiEdit } from "react-icons/bi";
  const IdeasDetailPage = async ({ params }) => {
  const { id } =await params;
- const res = await fetch(`http://localhost:5000/ideas/${id}`)
+ const res = await fetch(`http://localhost:5000/ideas/${id}`,{
+  headers:{
+    authorization: "logged in"
+  }
+ })
  const idea = await res.json();
  console.log(idea);
  
@@ -91,7 +97,8 @@ import { BiEdit } from "react-icons/bi";
                 </span>
               </div>
               <CommentCard idea={idea._id}></CommentCard>
-              <CommentDelete idea={idea._id}></CommentDelete>
+              <MyInteractionPage></MyInteractionPage>
+              {/* <CommentDelete idea={idea._id}></CommentDelete> */}
             </section>
           </div>
         </div>

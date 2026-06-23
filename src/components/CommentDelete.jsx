@@ -15,18 +15,18 @@ export function CommentDelete({CommentId}) {
     }
   return (
     <AlertDialog>
-      <Button variant="danger">Delete Project</Button>
+      <Button variant="danger">Delete Comment</Button>
       <AlertDialog.Backdrop>
         <AlertDialog.Container>
           <AlertDialog.Dialog className="sm:max-w-[400px]">
             <AlertDialog.CloseTrigger />
             <AlertDialog.Header>
               <AlertDialog.Icon status="danger" />
-              <AlertDialog.Heading>Delete project permanently?</AlertDialog.Heading>
+              <AlertDialog.Heading>Delete Comment permanently?</AlertDialog.Heading>
             </AlertDialog.Header>
             <AlertDialog.Body>
               <p>
-                This will permanently delete <strong>My Awesome Project</strong> and all of its
+                This will permanently delete <strong>My comment</strong> and all of its
                 data. This action cannot be undone.
               </p>
             </AlertDialog.Body>
@@ -36,7 +36,7 @@ export function CommentDelete({CommentId}) {
               </Button>
               <Button onClick={handleDelete}
               slot="close" variant="danger">
-                Delete Project
+                Delete comment
               </Button>
             </AlertDialog.Footer>
           </AlertDialog.Dialog>

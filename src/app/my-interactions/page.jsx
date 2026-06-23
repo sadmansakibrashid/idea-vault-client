@@ -1,4 +1,5 @@
 import { CommentDelete } from "@/components/CommentDelete";
+import EditComment from "@/components/EditComment";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 const MyInteractionPage =async () => {
@@ -14,16 +15,17 @@ const MyInteractionPage =async () => {
     
     return (
         <div>
-            <h1>My Interaction</h1>
+            <h1>My Comment</h1>
             <div>
                 {
                  data.map((d) => (
-              <div key={d.id}>
+              <div key={d._id}>
                 <h1>{d.userName}</h1>
                 <p>{d.commentText}</p>
                <p>{d.createdAt}</p>
                
                <CommentDelete CommentId={d._id}></CommentDelete>
+               <EditComment comment={d}></EditComment>
             </div>
           ))
                 }
