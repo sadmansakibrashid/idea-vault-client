@@ -4,14 +4,22 @@ import { CommentDelete } from "@/components/CommentDelete";
 import { DeleteAlert } from "@/components/DeleteAlert";
 import EditComment from "@/components/EditComment";
 import { EditModal } from "@/components/EditModal";
+import { auth } from "@/lib/auth";
 import { Button } from "@heroui/react";
+import { headers } from "next/headers";
 import Image from "next/image";
 import { BiEdit } from "react-icons/bi";
  const IdeasDetailPage = async ({ params }) => {
  const { id } =await params;
+ const token = await auth.api.getToken({
+  headers: await headers()
+ })
+ console.log(typeof token);
+ console.log(token)
+ console.log(JSON.stringify(token, null, 2));
  const res = await fetch(`http://localhost:5000/ideas/${id}`,{
   headers:{
-    authorization: "logged in"
+    authorization: `Bearer ${token.token}`
   }
  })
  const idea = await res.json();

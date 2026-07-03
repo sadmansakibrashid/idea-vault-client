@@ -38,7 +38,11 @@ const SignUpPage = () => {
     }
   };
 
- 
+ const handleGoogleSignIn =async()=>{
+  await authClient.signIn.social({
+    provider: "google"
+  })
+ }
 
   return (
     <div className="max-w-7xl mx-auto">
@@ -106,6 +110,18 @@ const SignUpPage = () => {
             </Button>
           </div>
         </Form>
+        <div className="flex justify-center items-center">
+          <Separator/>
+          <div> Or sign in with google</div>
+         <Separator></Separator>
+        </div>
+        <div>
+          <Button onClick={handleGoogleSignIn}
+          className={'w-full rounded-none'}>
+            <FcGoogle/>
+            sign in with google
+          </Button>
+        </div>
        
         
       </Card>
