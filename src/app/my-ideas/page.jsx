@@ -7,6 +7,7 @@ const MyIdeasPage = async () => {
     cache: "no-store",
   });
 
+
   const ideas = await res.json();
 
   return (

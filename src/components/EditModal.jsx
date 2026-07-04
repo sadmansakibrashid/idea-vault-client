@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import {Envelope} from "@gravity-ui/icons";
 import {Button, FieldError, Input, Label, ListBox, Modal, Surface, TextArea, TextField,Select} from "@heroui/react";
 import { BiEdit } from "react-icons/bi";
@@ -10,13 +11,15 @@ export function EditModal({idea}) {
         const formData = new FormData(e.currentTarget)
         const ideas = Object.fromEntries(formData.entries())
         console.log(ideas)
+        const {data:tokenData} = await authClient.token()
           
         
 
          const res= await fetch(`http://localhost:5000/ideas/${idea._id}`,{
           method:'PATCH',
           headers:{
-            'content-type':'application/json'
+            'content-type':'application/json',
+            authorization: `Bearer ${tokenData?.token}`
           },
           body: JSON.stringify(ideas)
         })

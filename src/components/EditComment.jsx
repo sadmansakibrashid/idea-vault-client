@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Button, Modal, TextArea } from "@heroui/react";
 import toast from "react-hot-toast";
+import { authClient } from "@/lib/auth-client";
 
 const EditComment = ({ comment }) => {
   const [open, setOpen] = useState(false);
@@ -11,6 +12,7 @@ const EditComment = ({ comment }) => {
   );
 
  const handleUpdate = async () => {
+  const {data:tokenData} = await authClient.token()
   try {
     const res = await fetch(
       `http://localhost:5000/comments/${comment._id}`,
@@ -18,6 +20,7 @@ const EditComment = ({ comment }) => {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
+           authorization: `Bearer ${tokenData?.token}`
         },
         body: JSON.stringify({ commentText }),
       }

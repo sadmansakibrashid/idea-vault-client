@@ -20,12 +20,15 @@ const handleComment = async () => {
       commentText,
       createdAt: new Date(),
     };
+    const {data:tokenData} = await authClient.token()
+    console.log(tokenData)
     
     try {
       const res = await fetch("http://localhost:5000/comments", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          authorization: `Bearer ${tokenData?.token}`
         },
         body: JSON.stringify(commentData),
       });
