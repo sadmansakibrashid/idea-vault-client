@@ -24,7 +24,7 @@ const handleComment = async () => {
     console.log(tokenData)
     
     try {
-      const res = await fetch("http://localhost:5000/comments", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/comments`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

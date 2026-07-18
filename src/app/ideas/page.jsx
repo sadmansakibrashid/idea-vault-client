@@ -2,7 +2,7 @@ import IdeaCard from "@/components/IdeaCard";
 import Image from "next/image";
 
 const ideasPage = async() => {
-    const  res =await fetch('http://localhost:5000/ideas');
+    const  res =await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/ideas`);
     const ideas = await res.json();
     console.log(ideas)
    

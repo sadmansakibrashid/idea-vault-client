@@ -3,7 +3,7 @@ import { EditModal } from "@/components/EditModal";
 import Image from "next/image";
 
 const MyIdeasPage = async () => {
-  const res = await fetch("http://localhost:5000/ideas", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/ideas`, {
     cache: "no-store",
   });
 

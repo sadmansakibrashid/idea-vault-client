@@ -6,7 +6,7 @@ import {AlertDialog, Button} from "@heroui/react";
 export function CommentDelete({CommentId}) {
     const handleDelete = async()=>{
       const {data:tokenData}= await authClient.token()
-        const res =await fetch(`http://localhost:5000/comments/${CommentId}`,{
+        const res =await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/comments/${CommentId}`,{
             method:"DELETE",
             headers:{
                 "content-type":"application/json",

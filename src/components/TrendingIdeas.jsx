@@ -8,7 +8,7 @@ export default function TrendingIdeas() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5000/trending-ideas")
+    fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/trending-ideas`)
       .then((res) => res.json())
       .then((data) => {
         setIdeas(data);

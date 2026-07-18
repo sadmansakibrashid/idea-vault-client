@@ -15,7 +15,7 @@ export function EditModal({idea}) {
           
         
 
-         const res= await fetch(`http://localhost:5000/ideas/${idea._id}`,{
+         const res= await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/ideas/${idea._id}`,{
           method:'PATCH',
           headers:{
             'content-type':'application/json',

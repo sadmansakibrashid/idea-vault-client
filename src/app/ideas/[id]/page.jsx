@@ -17,7 +17,7 @@ import { BiEdit } from "react-icons/bi";
  console.log(typeof token);
  console.log(token)
  console.log(JSON.stringify(token, null, 2));
- const res = await fetch(`http://localhost:5000/ideas/${id}`,{
+ const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/ideas/${id}`,{
   headers:{
     authorization: `Bearer ${token.token}`
   }
