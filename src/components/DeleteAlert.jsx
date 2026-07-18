@@ -4,6 +4,7 @@ import { authClient } from "@/lib/auth-client";
 import { TrashBin } from "@gravity-ui/icons";
 import {AlertDialog, Button} from "@heroui/react";
 import { redirect } from "next/navigation";
+import toast from "react-hot-toast";
 
 export function DeleteAlert({idea}) {
     const {_id}= idea;
@@ -17,8 +18,9 @@ export function DeleteAlert({idea}) {
        },
     });
     const data = await res.json();
+     toast.success("idea deleted!");
     redirect("/ideas")
-    console.log(data);
+    
     }
   return (
     <AlertDialog>

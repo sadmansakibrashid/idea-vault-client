@@ -13,6 +13,7 @@ import {
 } from "@heroui/react";
 import { authClient } from "@/lib/auth-client";
 import { redirect } from "next/navigation";
+import toast from "react-hot-toast";
 
 const SignUpPage = () => {
   const onSubmit = async (e) => {
@@ -34,7 +35,7 @@ const SignUpPage = () => {
 
     if (error) {
       // toast
-      alert("Error");
+      toast.error("registration failed");
     }
   };
 

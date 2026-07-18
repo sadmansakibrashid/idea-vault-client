@@ -2,6 +2,7 @@
 import { authClient } from '@/lib/auth-client';
 import { FieldError, Input, Label, TextField ,Select, ListBox, TextArea, Button} from '@heroui/react';
 import React from 'react';
+import toast from 'react-hot-toast';
 
 const AddIdeaPage = () => {
     const onSubmit =async(e)=>{
@@ -20,7 +21,8 @@ const AddIdeaPage = () => {
           body: JSON.stringify(ideas)
         })
         const data =await res.json()
-        console.log(data)
+        toast.success("idea added");
+        
         
 
     }

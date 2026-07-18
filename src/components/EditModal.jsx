@@ -3,6 +3,7 @@
 import { authClient } from "@/lib/auth-client";
 import {Envelope} from "@gravity-ui/icons";
 import {Button, FieldError, Input, Label, ListBox, Modal, Surface, TextArea, TextField,Select} from "@heroui/react";
+import toast from "react-hot-toast";
 import { BiEdit } from "react-icons/bi";
 
 export function EditModal({idea}) {
@@ -24,7 +25,7 @@ export function EditModal({idea}) {
           body: JSON.stringify(ideas)
         })
         const data =await res.json()
-        console.log(data)
+         toast.success("idea edited!");
        
         
 
